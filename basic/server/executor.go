@@ -8,7 +8,6 @@ import (
 	"github.com/yeeaiclub/a2a-go/sdk/server/execution"
 	"github.com/yeeaiclub/a2a-go/sdk/server/tasks"
 	"github.com/yeeaiclub/a2a-go/sdk/server/tasks/updater"
-	"github.com/yeeaiclub/a2a-go/sdk/types"
 )
 
 type PrintExecutor struct {
@@ -21,18 +20,9 @@ func NewPrintExecutor(store tasks.TaskStore) *PrintExecutor {
 
 func (m PrintExecutor) Execute(ctx context.Context, requestContext *execution.RequestContext, queue *event.Queue) error {
 	fmt.Println("hello, word")
-
-	task, err := m.store.Get(ctx, requestContext.TaskId)
-	if err != nil {
-		return err
-	}
-
-	if task == nil {
-		err = m.store.Save(ctx, &types.Task{Id: requestContext.TaskId, ContextId: requestContext.ContextId})
-		if err != nil {
-			return err
-		}
-	}
+	fmt.Println(requestContext.Params.Message.Parts[0])
+	fmt.Println(requestContext.TaskId)
+	fmt.Println(requestContext.Params.Message.Role)
 	taskUpdater := updater.NewTaskUpdater(queue, requestContext.TaskId, requestContext.ContextId)
 	taskUpdater.Complete(updater.WithFinal(true))
 	return nil

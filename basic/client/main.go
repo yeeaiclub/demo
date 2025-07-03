@@ -10,8 +10,7 @@ import (
 
 func main() {
 	httpClient := &http.Client{}
-	// todo: refactor it
-	r := client.NewA2ACardResolver(httpClient, "http://localhost:8080", client.WithAgentCardPath("/card"))
+	r := client.NewA2ACardResolver(httpClient, "http://localhost:8080", client.WithAgentCardPath("card"))
 	card, err := r.GetAgentCard()
 	if err != nil {
 		fmt.Println(err)
@@ -24,6 +23,9 @@ func main() {
 		Message: &types.Message{
 			TaskID: "1",
 			Role:   types.User,
+			Parts: []types.Part{
+				&types.TextPart{Kind: "text", Text: "hello, world"},
+			},
 		},
 	})
 
@@ -31,6 +33,12 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+
+	if resp.Error != nil {
+		fmt.Println(resp.Error.Message)
+		return
+	}
+
 	task, err := types.MapTo[types.Task](resp.Result)
 	if err != nil {
 		fmt.Println(err)
