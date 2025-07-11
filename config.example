@@ -1,0 +1,50 @@
+# A2A Go SDK Demo Environment Variables Configuration Example
+# Copy this file to .env and modify as needed
+
+# =============================================================================
+# Server Configuration
+# =============================================================================
+
+# Server port (default: 8080)
+A2A_SERVER_PORT=8080
+
+# Agent card path (default: /card)
+A2A_CARD_PATH=/card
+
+# API path (default: /api)
+A2A_API_PATH=/api
+
+# Agent name (default: Print Agent)
+A2A_AGENT_NAME=Print Agent
+
+# Agent description (default: A simple print agent for A2A Go SDK demonstration)
+A2A_AGENT_DESC=A simple print agent for A2A Go SDK demonstration
+
+# Agent version (default: v0.1.0)
+A2A_AGENT_VERSION=v0.1.0
+
+# =============================================================================
+# Client Configuration
+# =============================================================================
+
+# Server URL (default: http://localhost:8080)
+A2A_SERVER_URL=http://localhost:8080
+
+# Agent card path (default: card)
+A2A_AGENT_CARD_PATH=card
+
+# API path (default: /api)
+A2A_API_PATH=/api
+
+# Request timeout in seconds (default: 30)
+A2A_TIMEOUT_SECONDS=30
+
+# =============================================================================
+# Development Environment Configuration
+# =============================================================================
+
+# Enable debug mode (true/false)
+DEBUG=false
+
+# Log level (debug, info, warn, error)
+LOG_LEVEL=info 
